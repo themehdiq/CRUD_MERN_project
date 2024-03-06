@@ -1,9 +1,6 @@
-const animesChar = require("..");
-
-
 
 const getData = (data) => (req, res) => {
-  res.send(animesChar);
+  res.status(200).json(data);
 };
 
-module.exports = getData
+module.exports = getData;

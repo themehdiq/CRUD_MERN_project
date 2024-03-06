@@ -1,5 +1,3 @@
-let animesChar = require("..");
-
 
 
 const addAnime = (data) => (req, res) => {
@@ -8,8 +6,8 @@ const addAnime = (data) => (req, res) => {
     name,
     id,
   };
-  animesChar.push(newChar);
-  res.send(animesChar);
+  data.push(newChar);
+  res.status(201).json(data);
 };
 
 module.exports = addAnime;
