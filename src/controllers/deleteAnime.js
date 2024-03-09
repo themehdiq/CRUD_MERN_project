@@ -1,15 +1,14 @@
-const deleteAnime = (data) => (req, res) => {
-  const idAnime = parseInt(req.params.id);
-  //   console.log(idAnime);
-  const indexAnime = data.findIndex((elem) => elem.id === idAnime);
-  //   console.log(indexAnime);
-  if (indexAnime != -1) {
-    data.splice(indexAnime, 1);
-    for (i = indexAnime; i < data.length; i++) {
-      data[indexAnime].id = data[indexAnime].id - 1;
-    }
-  }
-  res.status(200).json(data);
-};
+const Anime = require("../models/Anime");
 
+const deleteAnime = () => async (req, res) => {
+  const idAnime = req.params.id;
+  try {
+    const anime = await Anime.findByIdAndDelete({ _id: idAnime });
+    const animes = await Anime.find();
+    res.status(200).json(animes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "something went wrong !" });
+  }
+};
 module.exports = deleteAnime;

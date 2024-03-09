@@ -7,7 +7,7 @@ dotenv.config();
 app.use(express.json());
 
 const PORT = process.env.PORT;
-const connectDB = require("./config/db");
+const connectDB = require("./config/db.js");
 connectDB();
 
 app.use("/animes", router);

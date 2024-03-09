@@ -4,18 +4,18 @@ const addAnime = require("../controllers/addAnimes");
 const modifyAnime = require("../controllers/modifyAnime");
 const deleteAnime = require("../controllers/deleteAnime");
 const animesChar = require("..");
-const addById = require("../controllers/addbyId");
+const getById = require("../controllers/getById");
 
 const router = express.Router();
 
-router.get("/", getData(animesChar));
+router.get("/", getData());
 
-router.get("/:id", addById(animesChar));
+router.get("/:id", getById());
 
-router.post("/", addAnime(animesChar));
+router.post("/", addAnime());
 
-router.put("/:id", modifyAnime(animesChar));
+router.put("/:id", modifyAnime());
 
-router.delete("/:id", deleteAnime(animesChar));
+router.delete("/:id", deleteAnime());
 
 module.exports = router;

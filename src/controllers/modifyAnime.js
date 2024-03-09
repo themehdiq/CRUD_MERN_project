@@ -1,16 +1,19 @@
+const Anime = require("../models/Anime");
 
+const modifyAnime = () => async (req, res) => {
+  try {
+    const idAnime = req.params.id;
 
-const modifyAnime = (data) => (req, res) => {
-  const idAnime = parseInt(req.params.id);
-  console.log(idAnime);
-  const indexAnime = data.findIndex((elem) => elem.id === idAnime);
-  console.log(indexAnime);
-  if (indexAnime != -1) {
-    if (req.query.name) {
-      data[indexAnime].name = req.query.name;
-    }
+    const anime = await Anime.findOneAndUpdate(
+      { _id: idAnime },
+      { $set: { name: "soufiane" } }
+    );
+    const animes = await Anime.find();
+    res.status(201).json(animes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "something went wrong !" });
   }
-  res.status(201).json(data);
 };
 
 module.exports = modifyAnime;
