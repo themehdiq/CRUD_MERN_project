@@ -4,9 +4,9 @@ const modifyAnime = () => async (req, res) => {
   try {
     const idAnime = req.params.id;
 
-    const anime = await Anime.findOneAndUpdate(
+    await Anime.findOneAndUpdate(
       { _id: idAnime },
-      { $set: { name: "soufiane" } }
+      { $set: { name: req.body.name } }
     );
     const animes = await Anime.find();
     res.status(201).json(animes);
